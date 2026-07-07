@@ -1,8 +1,8 @@
 # О проекте
 
-Первое задание из курса по веб-разработке с использованием ИИ. Суть задачи - демонстрация идеи о "больших промтах", т.е. промтах, описывающих задачу и некоторые общие технические требования в целом в одном промте без разбиения на отдельные функции, файлы и т.п. Со своей стороны я проверил, что полученный результат работает.
+Задание из курса по веб-разработке с использованием ИИ. Суть задачи - демонстрация идеи о "больших промтах", т.е. промтах, описывающих задачу и некоторые общие технические требования в целом в одном промте без разбиения на отдельные функции, файлы и т.п. Со своей стороны я проверил, что полученный результат работает.
 
-## Использованный промт
+## Первый использованный
 
 I want you to create a modern, professional NextJS expense tracking application. Here's my vision:
 
@@ -10,6 +10,7 @@ APPLICATION OVERVIEW:
 Build a complete expense tracking web app that helps users manage their personal finances. The app should feel modern, intuitive, and professional.
 
 CORE FEATURES:
+
 - Add expenses with date, amount, category, and description
 - View expenses in a clean, organized list
 - Filter expenses by date range and category
@@ -18,6 +19,7 @@ CORE FEATURES:
 - Data persistence using localStorage for this demo
 
 TECHNICAL REQUIREMENTS:
+
 - NextJS 16 with App Router
 - TypeScript for type safety
 - Tailwind CSS for styling with a modern, clean design
@@ -28,6 +30,7 @@ TECHNICAL REQUIREMENTS:
 - Currency formatting for amounts
 
 DESIGN REQUIREMENTS:
+
 - Clean, modern interface with a professional color scheme
 - Intuitive navigation and user experience
 - Visual feedback for user actions
@@ -35,6 +38,7 @@ DESIGN REQUIREMENTS:
 - Mobile-responsive design
 
 SPECIFIC FUNCTIONALITY:
+
 - Expense form with validation
 - Expense list with search and filter capabilities
 - Summary cards showing total spending, monthly spending, top categories
