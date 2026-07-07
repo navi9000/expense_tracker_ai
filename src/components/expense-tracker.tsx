@@ -106,12 +106,12 @@ export function ExpenseTracker() {
   }
 
   function exportCsv() {
-    if (!visibleExpenses.length) {
-      setNotice("No expenses match the current filters.");
+    if (!expenses.length) {
+      setNotice("No expenses to export.");
       return;
     }
 
-    const csv = exportExpensesToCsv(visibleExpenses);
+    const csv = exportExpensesToCsv(sortExpensesByDate(expenses));
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
@@ -161,7 +161,7 @@ export function ExpenseTracker() {
               Reset filters
             </button>
             <button className="button primary" onClick={exportCsv}>
-              Export CSV
+              Export Data
             </button>
           </div>
         </header>

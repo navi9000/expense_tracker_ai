@@ -142,11 +142,11 @@ export function getExpenseStats(expenses: Expense[]) {
 }
 
 export function exportExpensesToCsv(expenses: Expense[]) {
-  const header = ["Date", "Amount", "Category", "Description"];
+  const header = ["Date", "Category", "Amount", "Description"];
   const rows = expenses.map((expense) => [
     expense.date,
-    expense.amount.toFixed(2),
     expense.category,
+    expense.amount.toFixed(2),
     expense.description,
   ]);
 
