@@ -1,13 +1,13 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { ExportDialog } from "@/components/export-dialog";
 import { useLocalExpenses } from "@/hooks/use-local-expenses";
 import {
   categories,
   categoryColors,
   createExpense,
   defaultExpenseFormValues,
-  exportExpensesToCsv,
   filterExpenses,
   getExpenseStats,
   sortExpensesByDate,
@@ -35,6 +35,7 @@ export function ExpenseTracker() {
   >({});
   const [filters, setFilters] = useState<ExpenseFilters>(initialFilters);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [isExportOpen, setIsExportOpen] = useState(false);
   const [notice, setNotice] = useState("Ready to track your next expense.");
 
   const visibleExpenses = useMemo(
@@ -105,23 +106,6 @@ export function ExpenseTracker() {
     setNotice("Expense deleted.");
   }
 
-  function exportCsv() {
-    if (!visibleExpenses.length) {
-      setNotice("No expenses match the current filters.");
-      return;
-    }
-
-    const csv = exportExpensesToCsv(visibleExpenses);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `expenses-${new Date().toISOString().slice(0, 10)}.csv`;
-    anchor.click();
-    URL.revokeObjectURL(url);
-    setNotice("CSV export downloaded.");
-  }
-
   if (isLoading) {
     return (
       <main className="min-h-screen bg-slate-50 px-4 py-6 text-slate-950 sm:px-6 lg:px-8">
@@ -160,8 +144,8 @@ export function ExpenseTracker() {
             <button className="button secondary" onClick={() => setFilters(initialFilters)}>
               Reset filters
             </button>
-            <button className="button primary" onClick={exportCsv}>
-              Export CSV
+            <button className="button primary" onClick={() => setIsExportOpen(true)}>
+              Export Data
             </button>
           </div>
         </header>
@@ -449,6 +433,12 @@ export function ExpenseTracker() {
           </section>
         </div>
       </div>
+      <ExportDialog
+        expenses={sortExpensesByDate(expenses)}
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExportComplete={setNotice}
+      />
     </main>
   );
 }

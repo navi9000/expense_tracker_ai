@@ -141,24 +141,6 @@ export function getExpenseStats(expenses: Expense[]) {
   };
 }
 
-export function exportExpensesToCsv(expenses: Expense[]) {
-  const header = ["Date", "Amount", "Category", "Description"];
-  const rows = expenses.map((expense) => [
-    expense.date,
-    expense.amount.toFixed(2),
-    expense.category,
-    expense.description,
-  ]);
-
-  return [header, ...rows]
-    .map((row) =>
-      row
-        .map((cell) => `"${String(cell).replaceAll('"', '""')}"`)
-        .join(","),
-    )
-    .join("\n");
-}
-
 export function validateExpense(values: ExpenseFormValues) {
   const errors: Partial<Record<keyof ExpenseFormValues, string>> = {};
 
